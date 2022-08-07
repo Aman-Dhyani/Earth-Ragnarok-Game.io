@@ -1,0 +1,240 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    overflow: hidden;
+}
+
+body {
+    background-color: black;
+    height: 100vh;
+}
+
+#container {
+    height: 95vh;
+    width: 95%;
+    min-width: 200px;
+    position: relative;
+    background-image: url("./img/space.jfif");
+    background-size: 100% 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#play {
+    height: 10vh;
+    width: 40%;
+    text-align: center;
+    position: relative;
+    margin: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    font-size: 20px;
+    color:rgb(255, 77, 0);
+}
+
+#thor {
+    height: 20%;
+    width: 10%;
+    position: absolute;
+    left: 45%;
+    bottom: 10%;
+    background-image: url(img/thor1.png);
+    background-size: 100% 100%;
+    background-position: center;
+    animation: anime 0.2s linear infinite;
+    transition: 0.5s;
+    z-index: 5;
+}
+
+@keyframes anime {
+    0% {
+        background-image: url(img/thor1.png);
+        bottom: 10%;
+    }
+
+    10% {
+        background-image: url(img/thor2.png);
+        bottom: 11%;
+    }
+}
+
+.mjionir {
+    height: 15%;
+    width: 10%;
+    position: absolute;
+    background-image: url(img/hammer.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: hammermove 1s linear 1;
+}
+
+@keyframes hammermove {
+    0% {
+        bottom: 10%;
+    }
+
+    100% {
+        bottom: 110%;
+    }
+}
+
+@keyframes throw {
+    0% {
+        background-image: url(img/thor3.png);
+    }
+
+    100% {
+        background-image: url(img/thor3.png);
+    }
+}
+
+.invaders {
+    height: 15%;
+    width: 16%;
+    position: absolute;
+    bottom: 110%;
+    background-image: url("img/ufo.png");
+    background-repeat: no-repeat;
+    background-size: 60% 100%;
+    background-position: center;
+    transition: 1s;
+}
+
+#earth {
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    background-image: url("img/earth.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#health {
+    width: 100%;
+}
+
+#vid {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    overflow: hidden;
+    z-index: 10;
+}
+
+#score {
+    height: 9%;
+    width: 20%;
+    position: absolute;
+    bottom: 90%;
+    left: 2%;
+    color: green;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+}
+
+#HighScore {
+    height: 9%;
+    width: 20%;
+    position: absolute;
+    bottom: 90%;
+    left: 80%;
+    color: green;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.boom {
+    background-image: url(img/lightning.gif);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.boom2 {
+    background-image: url(img/boom.gif);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.impact {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    background-color: springgreen;
+    z-index: 1;
+}
+
+.impact2 {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    background-color: red;
+    z-index: 1;
+}
+
+.hide {
+    display: none;
+}
+
+/*----- For Small Resolution Devices ------*/
+.btns {
+    height: 30%;
+    width: 30%;
+    position: absolute;
+    bottom: -5%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 40px;
+    opacity: 0;
+}
+
+#btnLeft {
+    left: 5%;
+}
+
+#btnRight {
+    left: 65%;
+}
+
+#btnShoot {
+    left: 35%;
+}
+
+@media screen and (max-width:444px) {
+    #thor {
+        width: 20%;
+        height: 16%;
+        background-size: 100% 100%;
+    }
+
+    .invaders {
+        left: 20%;
+    }
+
+    #score {
+        font-size: 14px;
+    }
+
+    #HighScore {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width:500px) {
+
+    .btns {
+        opacity: 1;
+    }
+
+    #container {
+        height: 80vh;
+        width: 95%;
+    }
+}

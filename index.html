@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Earth-Ragnarok</title>
+    <link rel="stylesheet" href="shooter.css">
+</head>
+
+<body>
+    <!------ container ------->
+    <div id="container">
+
+        <!------ video ------->
+        <video id="vid" class="vid hide" muted autoplay>
+            <source src="video/vid.mp4" type="video/mp4">
+        </video>
+
+        <!------ play button ------->
+        <div id="play" onclick="display()"><br>
+           <h1>PLAY</h1>
+        </div>
+
+        <!------ Score ------->
+        <div id="score"></div>
+        <div id="HighScore"></div>
+        <!------ characters & others ------->
+        <div class="impact hide"></div>
+        <div class="impact2 hide"></div>
+        <div id="earth">
+            <progress id="health" max="100" value="100"></progress>
+        </div>
+
+        <div class="invaders"></div>
+        <div id="thor" class="hide"></div>
+    </div>
+    <!-- For Android & Small Resolution Devices -->
+    <div id="btnLeft" class="btns" onclick="leftMove()"><b>◀</b></div>
+    <div id="btnRight" class="btns" onclick="rightMove()"><b>▶</b></div>
+    <div id="btnShoot" class="btns" onclick="shoot()"><b>🔨</b></div>
+
+    <script src="shooter.js" defer></script>
+</body>
+
+</html>
