@@ -26,7 +26,8 @@ let play = document.querySelector("#play");
 //------ display function()--------------------
 function display() {
   play.classList.add("hide");
-  theme.play()
+  theme.loop = true;
+  theme.play();
   thor.classList.remove("hide");
 
   //--- calling main function--------------------
@@ -48,11 +49,13 @@ function mainGameFunction() {
     if (scr > highscore) {
       localStorage.setItem("highscore", scr)
     }
-  }, 1000);
 
-  let score = document.querySelector("#score").innerHTML = "score:-" + scr
+  }, 1500);
+
+  score = document.querySelector("#score").innerHTML = "score:-" + scr
   let HighScore = document.querySelector("#HighScore")
   HighScore.innerHTML = "highscore:- " + localStorage.getItem("highscore", scr)
+
 
   // ------------ GENERATE INVADERS ----------------------------------------------
   let generateinvaders = setInterval(() => {
@@ -60,10 +63,9 @@ function mainGameFunction() {
     let btnRightx = parseInt(window.getComputedStyle(btnRight).getPropertyValue("left"))
     let invader = document.createElement("div");
     invader.classList.add("invaders");
-    invader.style.left = Math.floor(50 + (btnRightx - 50) *Math.random()) + "px";
+    invader.style.left = Math.floor(40 + (btnRightx + 20 - 40) *Math.random()) + "px";
     container.appendChild(invader);
-  }, 2000);
-
+  }, 1300);
 
 
   // --------- MOVING INVADERS DOWN------------------------------------------------
