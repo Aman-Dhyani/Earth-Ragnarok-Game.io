@@ -185,7 +185,7 @@ body {
     height: 30%;
     width: 30%;
     position: absolute;
-    bottom: -5%;
+    bottom: -10%;
     cursor: pointer;
     display: flex;
     justify-content: center;
