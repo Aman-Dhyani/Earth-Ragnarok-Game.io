@@ -176,9 +176,6 @@ body {
     z-index: 1;
 }
 
-.hide {
-    display: none;
-}
 
 /*----- For Small Resolution Devices ------*/
 .btns {
@@ -237,4 +234,8 @@ body {
         height: 80vh;
         width: 95%;
     }
+}
+
+.hide {
+    display: none;
 }
