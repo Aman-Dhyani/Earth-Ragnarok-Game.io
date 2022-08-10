@@ -151,7 +151,7 @@ function right() {
   let thorx = parseInt(window.getComputedStyle(thor).getPropertyValue("left"));
   thor.style.left = thorx + 110 + "px";
 
-  if (thorx > 1050) {
+  if (thorx > 1100) {
     thor.style.left = thorx + "px";
   }
 }
