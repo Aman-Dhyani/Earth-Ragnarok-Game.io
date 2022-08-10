@@ -1,241 +1,344 @@
 * {
     margin: 0%;
     padding: 0%;
-    overflow: hidden;
 }
 
 body {
+    overflow: hidden;
     background-color: black;
-    height: 100vh;
 }
 
 #container {
-    height: 95vh;
-    width: 95%;
-    min-width: 200px;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
     position: relative;
-    background-image: url("./img/space.jfif");
+    background-image: url(img/background.jpg);
+    background-repeat: no-repeat;
     background-size: 100% 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
+/* -------------- PLAY BUTTON -------------------- */
 #play {
-    height: 10vh;
-    width: 40%;
-    text-align: center;
+    height: 3%;
+    width: 20%;
     position: relative;
-    margin: auto;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    cursor: pointer;
+    border: white 1px solid;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 13px;
-    color:rgb(255, 77, 0);
-}
-
-#thor {
-    height: 20%;
-    width: 10%;
-    position: absolute;
-    left: 45%;
-    bottom: 10%;
-    background-image: url(img/thor1.png);
-    background-size: 100% 100%;
-    background-position: center;
-    animation: anime 0.2s linear infinite;
-    transition: 0.5s;
+    margin: 20px auto;
+    color: whitesmoke;
+    padding: 3%;
+    cursor: pointer;
     z-index: 5;
-    filter: brightness(200%);
+    background-image: linear-gradient(red, orangered);
 }
 
-@keyframes anime {
-    0% {
-        background-image: url(img/thor1.png);
-        bottom: 10%;
-    }
-
-    10% {
-        background-image: url(img/thor2.png);
-        bottom: 11%;
-    }
-}
-
-.mjionir {
-    height: 15%;
-    width: 10%;
+/* -------------- CaptainAmerica MOVES -------------------- */
+.CaptainAmerica {
+    height: 35vh;
+    width: 15%;
     position: absolute;
-    background-image: url(img/hammer.png);
-    background-size: contain;
+    bottom: 10%;
+    left: 10%;
+    background-image: url(img/cap.png);
     background-repeat: no-repeat;
-    animation: hammermove 1s linear 1;
-    filter: brightness(200%);
-}
-
-@keyframes hammermove {
-    0% {
-        bottom: 10%;
-    }
-
-    100% {
-        bottom: 110%;
-    }
-}
-
-@keyframes throw {
-    0% {
-        background-image: url(img/thor3.png);
-    }
-
-    100% {
-        background-image: url(img/thor3.png);
-    }
-}
-
-.invaders {
-    height: 15%;
-    width: 16%;
-    position: absolute;
-    bottom: 110%;
-    background-image: url("img/ufo.png");
-    background-repeat: no-repeat;
-    background-size: 60% 100%;
+    background-size: 250% 100%;
     background-position: center;
+    transition: 0.5s;
+    z-index: 2;
+}
+
+.walkAnime {
+    animation: walkAnime 1s linear infinite;
+    background-size: contain;
+}
+
+@keyframes walkAnime {
+    0% {
+        background-size: 100% 90%;
+        background-image: url(img/capwalk.png)
+    }
+}
+
+.punchAnime {
+    animation: punchAnime 1s linear infinite;
+    background-size: 80% 100%;
+}
+
+@keyframes punchAnime {
+    0% {
+        background-size: 100% 120%;
+        background-image: url(img/jump.png)
+    }
+    10% {
+        background-size: 100% 120%;
+        background-image: url(img/punch2.png)
+    }
+}
+
+.punch {
+    height: 25vh;
+    width: 15%;
+    bottom: 0%;
+    position: absolute;
+    background-image: url(img/hand.gif);
+    background-repeat: no-repeat;
+    background-size: 150% 100%;
+    background-position: 40% 10%;
     transition: 1s;
 }
 
-#earth {
+.shoot1 {
+    animation: shoot1 2s linear 1;
+}
+
+@keyframes shoot1 {
+    0% {
+        background-size: 250% 100%;
+        background-image: url(img/cap2.png);
+    }
+
+    18% {
+        background-image: url(img/cap2.png);
+    }
+
+    20% {
+        background-size: 250% 100%;
+        background-image: url(img/cap.png);
+    }
+}
+
+.shield {
+    height: 7vh;
+    width: 8%;
+    bottom: 80%;
     position: absolute;
-    width: 100%;
-    bottom: 0%;
-    background-image: url("img/earth.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-#health {
-    width: 100%;
-}
-
-#vid {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: black;
-    overflow: hidden;
-    z-index: 10;
-}
-
-#score {
-    height: 9%;
-    width: 20%;
-    position: absolute;
-    bottom: 90%;
-    left: 2%;
-    color: green;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 20px;
-}
-
-#HighScore {
-    height: 9%;
-    width: 20%;
-    position: absolute;
-    bottom: 90%;
-    left: 80%;
-    color: green;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 20px;
-    border-radius: 50%;
-}
-
-.boom {
-    background-image: url(img/lightning.gif);
+    background-image: url(img/shield.png);
+    background-size: 120% 120%;
     background-repeat: no-repeat;
-    background-size: contain;
+    transition: 1s linear;
 }
 
-.boom2 {
-    background-image: url(img/boom.gif);
-    background-repeat: no-repeat;
-    background-size: contain;
+.jump1 {
+    animation: jump 0.4s linear 1;
+    background-size: 250% 100%;
 }
 
-.impact {
-    height: 100vh;
-    width: 100%;
-    position: absolute;
-    background-color: springgreen;
-    z-index: 1;
+@keyframes jump {
+    20% {
+        bottom: 30%;
+        background-image: url(img/jump.png);
+    }
+
+    50% {
+        bottom: 50%;
+    }
+
+    80% {
+        background-image: url(img/jump.png);
+    }
 }
 
-.impact2 {
-    height: 100vh;
-    width: 100%;
-    position: absolute;
-    background-color: red;
-    z-index: 1;
-}
-
-
-/*----- For Small Resolution Devices ------*/
-.btns {
-    height: 30%;
-    width: 30%;
-    position: absolute;
-    bottom: -10%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 40px;
-    opacity: 0;
-}
-
-#btnLeft {
+#health1 {
     left: 5%;
 }
 
-#btnRight {
-    left: 65%;
+/* -------------- IronMan MOVES -------------------- */
+.IronMan {
+    height: 35vh;
+    width: 15%;
+    position: absolute;
+    bottom: 10%;
+    left: 80%;
+    background-image: url(img/ironmanCustom.png);
+    background-repeat: no-repeat;
+    background-size: 250% 120%;
+    background-position: center;
+    transition: 0.1s;
 }
 
-#btnShoot {
-    left: 35%;
+.ironAnime {
+    background-image: url(img/ironAnime.png);
 }
 
-@media screen and (max-width:444px) {
-    #thor {
-        width: 20%;
-        height: 16%;
-        background-size: 100% 100%;
+.ironPunch {
+    animation: ironPunch 1s linear infinite;
+    background-repeat: no-repeat;
+    background-size: 450px 300px;
+    transition: 1s;
+}
+
+@keyframes ironPunch {
+    0% {
+        background-size: 100% 120%;
+        background-image: url(img/ironPunch1.png)
     }
 
-    .invaders {
-        left: 20%;
+    10% {
+        background-image: url(img/ironPunch2.png)
     }
 
-    #score {
-        font-size: 14px;
-    }
-
-    #HighScore {
-        font-size: 13px;
+    50% {
+        background-size: 250% 120%;
+        background-image: url(img/ironPunch2.png)
     }
 }
 
-@media screen and (max-width:500px) {
+.punch2 {
+    height: 25vh;
+    width: 15%;
+    bottom: 0%;
+    position: absolute;
+    background-image: url(img/ironhand.gif);
+    background-repeat: no-repeat;
+    background-size: 150% 100%;
+    background-position: 40% 10%;
+    transition: 1s;
+    z-index: 2;
+}
 
-    .btns {
-        opacity: 1;
+.shoot2 {
+    background-image: url(img/ironBeam.png);
+}
+
+.ironmanLaser {
+    height: 5vh;
+    width: 8%;
+    bottom: 80%;
+    position: absolute;
+    background-image: radial-gradient(yellow, red, blue);
+    border-radius: 20%;
+    transition: 1s linear;
+}
+
+.jump2 {
+    animation: jump2 0.8s linear 1;
+    background-size: 250% 120%;
+    transition: 1s;
+}
+
+@keyframes jump2 {
+    20% {
+        bottom: 20%;
+        background-image: url(img/ironJump.png);
     }
 
-    #container {
-        height: 80vh;
-        width: 95%;
+    50% {
+        bottom: 40%;
+        background-image: url(img/ironJump.png);
     }
+
+    74% {
+        bottom: 50%;
+        background-image: url(img/ironJump.png);
+    }
+
+    80% {
+        bottom: 50%;
+        background-image: url(img/ironmanLand.png);
+    }
+
+    100% {
+        bottom: -10%;
+        background-image: url(img/ironmanLand.png);
+    }
+}
+
+#health2 {
+    left: 70%;
+}
+
+.health {
+    height: 4vh;
+    width: 25%;
+    position: absolute;
+    border: 2px black solid;
+    border-radius: 10px;
+    bottom: 90%;
+}
+
+.impact {
+    background-color: red;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.5;
+    z-index: 5;
+}
+
+.weaponbar {
+    height: 4vh;
+    width: 5%;
+    bottom: 80%;
+    position: absolute;
+    border: 2px black solid;
+    border-radius: 10px;
+}
+
+#bar1 {
+    left: 5%;
+}
+
+#bar2 {
+    left: 90%;
+}
+
+.weaponbar::-webkit-progress-value {
+    background-color: red;
+}
+
+.p1btns {
+    height: 5vh;
+    width: 10%;
+    border-radius: 10px;
+    border: black 1px solid;
+    background: orangered;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: 30px;
+    opacity: 0.3;
+    z-index: 6;
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#leftBtn {
+    position: absolute;
+    bottom: 1%;
+    left: 5%;
+}
+
+#rightBtn {
+    position: absolute;
+    bottom:1%;
+    left: 20%;
+}
+
+#jumpBtn {
+    position: absolute;
+    bottom: 10%;
+    left: 12.5%;
+}
+
+#punchBtn {
+    position: absolute;
+    bottom: 10%;
+    left: 80%;
+}
+
+#shootBtn {
+    position: absolute;
+    bottom: 1%;
+    left: 80%;
+}
+
+
+.p1btns:active {
+    background: orangered;
+    opacity: 1;
 }
 
 .hide {
