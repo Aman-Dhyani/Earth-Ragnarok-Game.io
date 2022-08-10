@@ -2,46 +2,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiplayer Fight</title>
-    <link rel="stylesheet" href="multiplayer.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Earth-Ragnarok</title>
+    <link rel="stylesheet" href="shooter.css">
 </head>
 
 <body>
     <!------ container ------->
     <div id="container">
 
+        <!------ video ------->
+        <video id="vid" class="vid hide" muted autoplay>
+            <source src="video/vid.mp4" type="video/mp4">
+        </video>
+
         <!------ play button ------->
-        <div id="play" onclick="display()">
+        <div id="play" onclick="display()"><br>
             <h1>PLAY</h1>
         </div>
 
-        <!------ red bars ------->
-        <progress id="bar1" class="weaponbar" value="0" max="50"></progress>
-        <progress id="bar2" class="weaponbar" value="0" max="50"></progress>
-
-        <!------ Health bar ------->
-        <progress id="health1" class="health" value="100" max="100"></progress>
-        <progress id="health2" class="health" value="100" max="100"></progress>
-
-        <!------ Characters & other ------->
+        <!------ Score ------->
+        <div id="score"></div>
+        <div id="HighScore"></div>
+        
+        <!------ characters & others ------->
         <div class="impact hide"></div>
-        <div class="CaptainAmerica hide"></div>
-        <div class="IronMan hide"></div>
+        <div class="impact2 hide"></div>
+        <div id="earth">
+            <progress id="health" max="100" value="100"></progress>
+        </div>
 
-        <!-- For Android & Small Resolution Devices -->
-
-        <!-- Button For CaptainAmerica -->
-        <div id="leftBtn" class="p1btns hide" onclick="moveLeft()">◀</div>
-        <div id="rightBtn" class="p1btns hide" onclick="moveRight()">▶</div>
-        <div id="jumpBtn" class="p1btns hide" onclick="Jump()">🔼</div>
-        <div id="punchBtn" class="p1btns hide" onclick="p1punch()">👊</div>
-        <div id="shootBtn" class="p1btns hide" onclick="throwShield()">🌟</div>
+        <div class="invaders"></div>
+        <div id="thor" class="hide"></div>
     </div>
-    <script src="multi.js"></script>
+    <!-- For Android & Small Resolution Devices -->
+    <div id="btnLeft" class="btns" onclick="leftMove()"><b>⪡</b></div>
+    <div id="btnRight" class="btns" onclick="rightMove()"><b>⪢</b></div>
+    <div id="btnShoot" class="btns" onclick="shoot()"><b>⚡</b></div>
 
+    <script src="shooter.js" defer></script>
 </body>
 
 </html>
