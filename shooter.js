@@ -22,7 +22,6 @@ let explosion = new Audio("music/explosion.m4a");
 //-------PLAY -----------------------------------------------
 let play = document.querySelector("#play");
 
-
 //------ display function()--------------------
 function display() {
   play.classList.add("hide");
@@ -31,24 +30,21 @@ function display() {
   thor.classList.remove("hide");
 
   //--- calling main function--------------------
-  window.requestAnimationFrame(mainGameFunction)
+  mainGameFunction();
 }
 
 // ------------- THE MAIN FUNCTION -----------------------------------------
 function mainGameFunction() {
 
   // -------- SCORE --------------------------------------------
-
   let highscore = localStorage.getItem("highscore")
   let scr = 0;
 
   let intrvl = setInterval(() => {
     scr = scr += 1
-    let score = document.querySelector("#score").innerHTML = "score:-" + scr
+    score = document.querySelector("#score").innerHTML = "score:-" + scr
 
-    if (scr > highscore) {
-      localStorage.setItem("highscore", scr)
-    }
+    if (scr > highscore) localStorage.setItem("highscore", scr)
 
   }, 1500);
 
@@ -60,100 +56,49 @@ function mainGameFunction() {
   // ------------ GENERATE INVADERS ----------------------------------------------
   let generateinvaders = setInterval(() => {
     let btnRight = document.querySelector("#btnRight");
-    let btnRightx = parseInt(window.getComputedStyle(btnRight).getPropertyValue("left"))
+    let btnRightx = parseInt(getComputedStyle(btnRight).getPropertyValue("left"))
     let invader = document.createElement("div");
     invader.classList.add("invaders");
-    invader.style.left = Math.floor(40 + (btnRightx + 20 - 40) *Math.random()) + "px";
+    invader.style.left = Math.floor(40 + (btnRightx + 20 - 40) * Math.random()) + "px";
     container.appendChild(invader);
-  }, 1300);
+  }, 1150);
 
 
   // --------- MOVING INVADERS DOWN------------------------------------------------
   let moveinvaders = setInterval(() => {
-    let invaders = document.getElementsByClassName("invaders");
+    let invaders = document.querySelectorAll(".invaders");
 
-    if (invaders != undefined) {
-      for (let i = 0; i < invaders.length; i++) {
-        let invader = invaders[i];
-        let invaderbottom = parseInt(window.getComputedStyle(invader).getPropertyValue("bottom"));
+    invaders.forEach(invader => {
+      let invaderbottom = parseInt(getComputedStyle(invader).getPropertyValue("bottom"));
 
-        //------ CRASH EARTH GAMEOVER ----------------------------------------------
-        if (invaderbottom < -90) {
-          invader.classList.add("hide")
-          health.value -= damage
-          impact2.classList.remove("hide")
+      //------ CRASH EARTH GAMEOVER ----------------------------------------------
+      if (invaderbottom < -90) {
+        invader.classList.add("hide")
+        health.value -= damage
+        impact2.classList.remove("hide")
 
-          setTimeout(() => {
-            impact2.classList.add("hide")
-          }, 50);
-        }
-
-        if (health.value == 0) {
-          explosion.play();
-          theme.pause();
-          hammerSound.pause();
-          vid.classList.remove("hide")
-
-          setTimeout(() => {
-            explosion = "null"
-          }, 1500);
-
-          setTimeout(() => {
-            gameover.play();
-          }, 4500);
-
-          setTimeout(() => {
-            clearInterval(moveinvaders);
-            clearInterval(generateinvaders);
-            window.location.reload();
-          }, 6000);
-        }
-        invader.style.bottom = invaderbottom - 30 + "px";
+        setTimeout(() => impact2.classList.add("hide"), 50);
       }
-    }
+
+      if (health.value == 0) {
+        explosion.play();
+        theme.pause();
+        hammerSound.pause();
+        vid.classList.remove("hide")
+
+        setTimeout(() => clearInterval(generateinvaders), 1000);
+
+        setTimeout(() => explosion = "null", 1500);
+
+        setTimeout(() => gameover.play(), 4500);
+
+        setTimeout(() => location.reload(), 6000);
+      }
+      invader.style.bottom = invaderbottom - 30 + "px";
+    })
   }, 450);
 
   //--------------- mainGameFunction Over ------------------------------------
-}
-
-// ----- Going LeftMOVE FOR SMALL DEVICE'S --------------------------- 
-function leftMove() {
-  let thorx = parseInt(window.getComputedStyle(thor).getPropertyValue("left"));
-  thor.style.left = thorx - 30 + "px";
-
-  if (thorx < 10) {
-    thor.style.left = thorx + "px";
-  }
-}
-
-// ----- Going RightMOVE FOR SMALL DEVICE'S --------------------------- 
-function rightMove() {
-  let thorx = parseInt(window.getComputedStyle(thor).getPropertyValue("left"));
-  thor.style.left = thorx + 30 + "px";
-
-  if (thorx > 300) {
-    thor.style.left = thorx + "px";
-  }
-}
-
-// ----- Going Left By Keyboard "a" And Screen Button "a" --------------------------- 
-function left() {
-  let thorx = parseInt(window.getComputedStyle(thor).getPropertyValue("left"));
-  thor.style.left = thorx - 110 + "px";
-
-  if (thorx < 10) {
-    thor.style.left = thorx + "px";
-  }
-}
-
-// ----- Going Right By Keyboard "w" And Screen Button "w" --------------------------- 
-function right() {
-  let thorx = parseInt(window.getComputedStyle(thor).getPropertyValue("left"));
-  thor.style.left = thorx + 110 + "px";
-
-  if (thorx > 1100) {
-    thor.style.left = thorx + "px";
-  }
 }
 
 // ----- SHOOT Function Enable by Keyboard "w" And Screen Button "w" ----------------------
@@ -162,76 +107,93 @@ function shoot() {
   hammerSound.play();
   thor.style.animation = "throw 1s linear 1";
 
-  setTimeout(() => {
-    thor.style.animation = "anime 0.2s linear infinite";
-  }, 100);
+  setTimeout(() => thor.style.animation = "anime 0.2s linear infinite", 100);
 
-  let thorx = parseInt(window.getComputedStyle(thor).getPropertyValue("left"));
+  let thorx = parseInt(getComputedStyle(thor).getPropertyValue("left"));
 
   let hammer = document.createElement("div");
   container.appendChild(hammer);
   hammer.style.left = thorx + 50 + "px";
   hammer.classList.add("mjionir")
 
-  setTimeout(() => {
-    container.removeChild(hammer);
-  }, 850);
+  setTimeout(() => container.removeChild(hammer), 850);
 
   setInterval(() => {
-    let invaders = document.getElementsByClassName("invaders");
 
-    for (let i = 0; i < invaders.length; i++) {
-      let invader = invaders[i];
-      if (invader != undefined) {
-        let invaderProp = invader.getBoundingClientRect();
-        let hammerProp = hammer.getBoundingClientRect();
+    let invaders = document.querySelectorAll(".invaders");
+    invaders.forEach(invader => {
 
+      let invaderProp = invader.getBoundingClientRect();
+      let hammerProp = hammer.getBoundingClientRect();
 
-        // -------- HAMMER & INVADERS COLLISONS -----------------------------------------
-        if (hammerProp.left >= invaderProp.left &&
-          hammerProp.right <= invaderProp.right &&
-          hammerProp.top <= invaderProp.top &&
-          hammerProp.bottom <= invaderProp.bottom) {
+      // -------- HAMMER & INVADERS COLLISONS -----------------------------------------
+      if (hammerProp.left >= invaderProp.left &&
+        hammerProp.right <= invaderProp.right &&
+        hammerProp.top <= invaderProp.top &&
+        hammerProp.bottom <= invaderProp.bottom) {
 
-          explosion.play();
-          impact.classList.remove("hide")
+        explosion.play();
+        impact.classList.remove("hide")
 
-          setTimeout(() => {
-            impact.classList.add("hide")
-            invader.parentElement.removeChild(invader);
-            hammer.classList.add("boom")
-          }, 50);
+        setTimeout(() => {
+          impact.classList.add("hide")
+          container.removeChild(invader);
+          hammer.classList.add("boom")
+        }, 50);
 
-          setTimeout(() => {
-            hammer.classList.remove("boom")
-            hammer.classList.add("boom2")
-          }, 80);
+        setTimeout(() => {
+          hammer.classList.remove("boom")
+          hammer.classList.add("boom2")
+        }, 80);
 
-          setTimeout(() => {
-            hammer.classList.add("hide")
-          }, 400);
-        }
+        setTimeout(() => hammer.classList.add("hide"), 400);
       }
-    }
+    })
   });
 }
 
+// ----- Going LeftMOVE FOR SMALL DEVICE'S --------------------------- 
+function leftMove() {
+  let thorx = parseInt(getComputedStyle(thor).getPropertyValue("left"));
+  thor.style.left = thorx - 30 + "px";
+
+  if (thorx < 10) thor.style.left = thorx + "px";
+}
+
+// ----- Going RightMOVE FOR SMALL DEVICE'S --------------------------- 
+function rightMove() {
+  let thorx = parseInt(getComputedStyle(thor).getPropertyValue("left"));
+  thor.style.left = thorx + 30 + "px";
+
+  if (thorx > 300) thor.style.left = thorx + "px";
+}
+
+// ----- Going Left By Keyboard "a" And Screen Button "a" --------------------------- 
+function left() {
+  let thorx = parseInt(getComputedStyle(thor).getPropertyValue("left"));
+  thor.style.left = thorx - 110 + "px";
+
+  if (thorx < 10) thor.style.left = thorx + "px";
+}
+
+// ----- Going Right By Keyboard "w" And Screen Button "w" --------------------------- 
+function right() {
+  let thorx = parseInt(getComputedStyle(thor).getPropertyValue("left"));
+  thor.style.left = thorx + 110 + "px";
+
+  if (thorx > 1100) thor.style.left = thorx + "px";
+}
+
 //-- thor CONTROLS------------------------------------------------
-window.addEventListener("keydown", (e) => {
+addEventListener("keydown", (e) => {
 
   //-- thor LEFT MOVE --------------------------------------------
-  if (e.key == "a") {
-    left()
-  }
+  if (e.key == "a") left();
 
   //-- thor RIGHT MOVE -------------------------------------------
-  if (e.key == "d") {
-    right()
-  }
-
+  if (e.key == "d") right();
 
   // --------- CREATING HAMMER WHEN 'W' IS PRESSED------------------------------------------
-  if (e.key == "w") {
-    shoot()
-  }
+  if (e.key == "w") shoot();
+
 });
