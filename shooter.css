@@ -23,18 +23,39 @@ body {
     text-align: center;
 }
 
-#play {
-    height: 8vh;
-    width: 38%;
-    text-align: center;
-    position: relative;
-    margin: auto;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+/* CSS */
+.button-74 {
+    height: 10vh;
+    width: 120px;
+    background-color: #fbeee0;
+    border: 2px solid red;
+    border-radius: 30px;
+    box-shadow: black 4px 4px 0 0;
+    color: orangered;
     cursor: pointer;
-    font-size: 13px;
-    color: rgb(255, 77, 0);
-    border: 1px solid white;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position:absolute;
+    bottom: 70%;
+    font-size: 10px;
+  }
+  
+  .button-74:hover {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+  
+  @media (min-width: 768px) {
+    .button-74 {
+        
+      min-width: 120px;
+      padding: 0 25px;
+    }
+  }
+
+
 
 #thor {
     height: 20%;
