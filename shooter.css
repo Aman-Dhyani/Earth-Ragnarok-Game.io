@@ -267,6 +267,7 @@ body {
 
     .btns {
         opacity: 1;
+        bottom: -5%;
     }
 
     #container {
