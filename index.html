@@ -2,46 +2,62 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Earth-Ragnarok</title>
-    <link rel="stylesheet" href="shooter.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ragnarok.css">
+    <link rel="stylesheet" href="anime.css">
+    <link rel="icon" type="image/x-icon" href="assets/earth.jpg">
+    <title>Earth Ragnarok</title>
 </head>
 
 <body>
-    <!------ container ------->
-    <div id="container">
+    <div class="container flexer">
+        <!-- game area -->
+        <div class="game-area-container flexer">
+            <!-- space-->
+            <div class="space"></div>
 
-        <!------ video ------->
-        <video id="vid" class="vid hide" muted autoplay>
-            <source src="video/vid.mp4" type="video/mp4">
-        </video>
+            <div class="tut">Touch / Space To Shoot</div>
 
-        <!------ play button ------->
-        <button id="play" class="button-74" onclick="display()"><br>
-            <h1>PLAY</h1>
-        </button>
+            <!-- play button -->
+            <div class="play-btn flexer start-game">
+                <h1 class="start-game">PLAY</h1>
+            </div>
 
-        <!------ Score ------->
-        <div id="score"></div>
-        <div id="HighScore"></div>
-        
-        <!------ characters & others ------->
-        <div class="impact hide"></div>
-        <div class="impact2 hide"></div>
-        <div id="earth">
-            <progress id="health" max="100" value="100"></progress>
+            <!-- scored-->
+            <div class="scores-box flexer">
+                <div id="score-box"></div>
+                <div id="high-score-box"></div>
+            </div>
+
+            <!-- thor -->
+            <div id="thor" class="thor-levitating"></div>
+
+            <!-- maajoooolnir -->
+            <div id="mjolnir" class="flexer hide">
+                <div id="mjolnir-top"></div>
+                <div id="mjolnir-bottom"></div>
+            </div>
+
+            <!-- earth -->
+            <div class="earth">
+                <div class="land"></div>
+                <div class="land"></div>
+            </div>
+
+            <!-- buttons -->
+            <div class="btn-box flexer">
+                <input type="range" min="0" max="350" value="175" class="navigator">
+            </div>
+
+            <!------ video ------->
+            <video class="last-video hide" muted autoplay>
+                <source src="video/video.mp4" type="video/mp4">
+            </video>
         </div>
-
-        <div class="invaders"></div>
-        <div id="thor" class="hide"></div>
     </div>
-    <!-- For Android & Small Resolution Devices -->
-    <div id="btnLeft" class="btns" onclick="leftMove()"><b>⪡</b></div>
-    <div id="btnRight" class="btns" onclick="rightMove()"><b>⪢</b></div>
-    <div id="btnShoot" class="btns" onclick="shoot()"><b>⚡</b></div>
-
-    <script src="shooter.js" defer></script>
+    <script defer src="ragnarok.js"></script>
 </body>
 
 </html>
