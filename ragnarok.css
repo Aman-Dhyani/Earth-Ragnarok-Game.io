@@ -1,0 +1,301 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    overflow: hidden;
+}
+
+body {
+    background-color: black;
+}
+
+
+/* --- display flex --- */
+.flexer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* --- Container --- */
+.container {
+    height: 100vh;
+    width: 100%;
+    background-color: #000000;
+    overflow: hidden;
+}
+
+
+/* --- Game Area --- */
+.game-area-container {
+    height: 100vh;
+    width: 420px;
+    flex-direction: column;
+}
+
+
+/* --- Space --- */
+.space {
+    height: 100vh;
+    width: 420px;
+    position: absolute;
+    background-image: url("assets/space.svg");
+    background-size: cover;
+    filter: contrast(10);
+}
+
+
+/* --- tutorial --- */
+.tut{
+    color: rgb(255, 221, 0);
+    font-size: 20px;
+    position: absolute;
+    font-family: monospace;
+    top: 40%;
+}
+
+/* --- Play Button --- */
+.play-btn {
+    width: 156px;
+    height: 80px;
+    background: gray;
+    position: absolute;
+    top: 100px;
+    font-family: monospace;
+}
+
+.play-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -0.5px;
+    border-bottom: 7px solid gray;
+    border-left: 8px solid #000000;
+    border-right: 8px solid #000000;
+    width: 142px;
+    height: 0;
+}
+
+.play-btn::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -0.5px;
+    border-top: 9px solid gray;
+    border-left: 8px solid #000000;
+    border-right: 8px solid #000000;
+    width: 142px;
+    height: 0;
+}
+
+.play-btn h1 {
+    padding: 12px;
+    padding-right: 40px;
+    padding-left: 40px;
+    background: #9d9d9d;
+    border: 1px solid black;
+}
+
+
+/* --- Thor --- */
+#thor {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    filter: saturate(5);
+    z-index: 5;
+}
+
+.thor-levitating {
+    animation: thor-anime 0.2s linear infinite;
+}
+
+.thor-shooting {
+    animation: thor-anime2 0.2s linear infinite;
+    background-image: url('assets/thor3.svg');
+}
+
+/* --- Thor's Hammer --- */
+#mjolnir {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 3;
+    flex-direction: column;
+    filter: invert(-5);
+}
+
+#mjolnir-top {
+    height: 20px;
+    width: 30px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+#mjolnir-bottom {
+    height: 25px;
+    width: 8px;
+    background-color: #4f1e1e;
+    border-radius: 0px 0px 7px 7px;
+}
+
+#mjolnir-top,
+#mjolnir-bottom {
+    outline: 1px solid white;
+}
+
+.rotatedMjolnir {
+    transform: rotate(180deg);
+}
+
+.mjolnirAnime {
+    animation: majolnir-Anime 0.3s linear infinite;
+}
+
+
+/* --- Obstacle --- */
+#ufo {
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    flex-direction: column;
+    z-index: 2;
+    top: -100px;
+}
+
+#ufo-top {
+    height: 20px;
+    width: 30px;
+    background-color: rgb(255, 162, 0);
+    border-radius: 50% 50% 0 0;
+    border: 5px black double;
+    transition: 0.2s;
+}
+
+#alien {
+    height: 20px;
+    width: 20px;
+    background-color: green;
+    border-radius: 50% 50% 0 0;
+}
+
+#ufo-bottom {
+    height: 15px;
+    width: 70px;
+    border-radius: 40px;
+    background-color: #0073ff;
+    outline: 4px #0073ff solid;
+}
+
+
+/* --- Earth --- */
+.earth {
+    height: 40vh;
+    width: 100%;
+    top: 53%;
+    position: relative;
+    border-radius: 50%;
+    background-color: #00a6ff;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 5px -5px 40px #fffeb1;
+    border-top: 5px solid #ffffcd;
+}
+
+.land:nth-child(1) {
+    width: 80%;
+}
+
+.land {
+    height: 500px;
+    width: 50%;
+    background-color: #0a9c00;
+    border-radius: 50%;
+}
+
+
+/* --- Control Buttons --- */
+.btn-box {
+    height: 70px;
+    width: 420px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.navigator {
+    appearance: none;
+    width: 90%;
+    height: 10px;
+    background-color: #00ff37a9;
+    overflow: visible;
+    opacity: 0.8;
+    border: none;
+    outline: none;
+}
+
+.navigator::-webkit-slider-thumb {
+    appearance: none;
+    appearance: none;
+    width: 45px;
+    height: 45px;
+    cursor: grab;
+    border-radius: 4px;
+    background-image: url('assets/thor.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30px 30px;
+    box-shadow: 1px 1px 15px #00ff37a9;
+    border: 2px solid #00ff37a9;
+    border-radius: 50%;
+    filter: saturate(5);
+}
+
+.navigator::-webkit-slider-thumb:active {
+    cursor: grabbing;
+}
+
+/* --- Scores --- */
+.scores-box {
+    color: #009c00;
+    font-family: monospace;
+    font-size: 15px;
+    position: absolute;
+    top: 10px;
+    justify-content: space-between;
+}
+
+#score-box {
+    margin-left: 20px;
+}
+
+#high-score-box {
+    margin-right: 20px;
+}
+
+
+/* --- Video --- */
+.last-video {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.hide {
+    display: none;
+}
+
+@media screen and (max-width:426px) {
+
+    .space,
+    .btn-box,
+    .game-area-container {
+        width: 100%;
+    }
+}
