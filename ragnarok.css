@@ -220,25 +220,24 @@ body {
 
 /* --- Control Buttons --- */
 .btn-box {
-    height: 70px;
+    height: 150px;
     width: 420px;
     position: absolute;
     bottom: 0px;
+    z-index: 5;
 }
 
 .navigator {
     appearance: none;
     width: 90%;
     height: 10px;
-    background-color: #00ff37a9;
+    background-color: transparent;
     overflow: visible;
-    opacity: 0.8;
     border: none;
     outline: none;
 }
 
 .navigator::-webkit-slider-thumb {
-    appearance: none;
     appearance: none;
     width: 45px;
     height: 45px;
@@ -248,10 +247,11 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30px 30px;
-    box-shadow: 1px 1px 15px #00ff37a9;
-    border: 2px solid #00ff37a9;
+    box-shadow: 1px 1px 15px #00ff37;
+    border: 2px solid #00ff37;
     border-radius: 50%;
     filter: saturate(5);
+    border: 50px solid transparent;
 }
 
 .navigator::-webkit-slider-thumb:active {
