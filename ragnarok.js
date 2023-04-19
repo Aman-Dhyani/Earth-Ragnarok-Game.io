@@ -207,6 +207,11 @@ const CollisonDetector = () => {
             setTimeout(() => mjolnir.classList.remove("mjolnirAnime"), 200);
         }
 
+        else if (gameAudio.currentTime >= 140) {
+            gameAudio.currentTime = 0
+            gameAudio.play()
+        }
+
         // Game Over
         else if (uOffset.top > 650) {
             localStorage.setItem("topScores", score)
