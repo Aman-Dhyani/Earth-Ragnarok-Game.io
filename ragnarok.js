@@ -6,6 +6,7 @@ const thor = document.querySelector("#thor")
 const mjolnir = document.querySelector("#mjolnir")
 const thorNavigator = document.querySelector(".navigator")
 const lastVideo = document.querySelector(".last-video");
+const earth = document.querySelector(".earth")
 
 // Scores
 const scoreBox = document.querySelector("#score-box")
@@ -57,6 +58,7 @@ window.addEventListener("keydown", e => {
 thorNavigator.addEventListener('input', e => {
     thorNewCoords = parseInt(e.target.value) - 175 + "px"
     thor.style.left = thorNewCoords
+    earth.style.transform = `rotate(${parseInt(- e.target.value)}deg)`
 })
 
 // For Starting Game ----- Click
