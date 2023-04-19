@@ -6,6 +6,7 @@
 
 body {
     background-color: black;
+    overflow: hidden;
 }
 
 
@@ -190,33 +191,29 @@ body {
     outline: 4px #0073ff solid;
 }
 
-
 /* --- Earth --- */
 .earth {
-    height: 40vh;
-    width: 100%;
-    top: 53%;
+    height:400px;
+    width: 400px;
+    top: 45%;
     position: relative;
     border-radius: 50%;
-    background-color: #00a6ff;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-around;
-    box-shadow: 5px -5px 40px #fffeb1;
-    border-top: 5px solid #ffffcd;
+    background-color: #16af1e;
+    box-shadow: -5px 5px 30px #ffffff;
+    border-bottom: 5px solid #ffffcd;
+    transition: 0.1s;
+    transform: rotate(-180deg);
 }
 
-.land:nth-child(1) {
-    width: 80%;
+.circle{
+    height:140px;
+    width: 140px;
+    background-color: #00ccff;
+    border-radius: 50px;
+    outline: 150px dotted  #00ccff;
+    border: 60px solid #16af1e ;
+    filter: blur(10px);
 }
-
-.land {
-    height: 500px;
-    width: 50%;
-    background-color: #0a9c00;
-    border-radius: 50%;
-}
-
 
 /* --- Control Buttons --- */
 .btn-box {
