@@ -195,14 +195,14 @@ body {
 .earth {
     height:400px;
     width: 400px;
-    top: 45%;
+    top: 53%;
     position: relative;
     border-radius: 50%;
     background-color: #16af1e;
-    box-shadow: -5px 5px 30px #ffffff;
-    border-bottom: 5px solid #ffffcd;
+    box-shadow:5px -5px 30px #ffffff;
+    border-top: 3px solid #ffffcd;
     transition: 0.1s;
-    transform: rotate(-180deg);
+    transform: rotate(0deg);
 }
 
 .circle{
