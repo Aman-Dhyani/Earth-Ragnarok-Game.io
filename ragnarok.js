@@ -41,6 +41,7 @@ const explodeEffect = new Audio('music/explosion.m4a')
 const gameAudio = new Audio('music/thor_ragnarok_theme_song(128k).m4a')
 const gameover = new Audio('music/gameover.m4a')
 
+let ufos
 
 /* ======= Events ====== */
 /* ======= Events ====== */
@@ -58,7 +59,7 @@ window.addEventListener("keydown", e => {
 thorNavigator.addEventListener('input', e => {
     thorNewCoords = parseInt(e.target.value) - 175 + "px"
     thor.style.left = thorNewCoords
-    earth.style.transform = `rotate(${parseInt(- e.target.value)}deg)`
+    earth.style.transform = `rotate(${parseInt(- e.target.value/8)}deg)`
 })
 
 // For Starting Game ----- Click
@@ -111,7 +112,7 @@ const mjolnirMoveUp = () => {
     mjolnirOffsets = mjolnir.getBoundingClientRect()
 
     mjolnir.style.left = thorOffsets.left + 50 + "px"
-    mjolnir.style.top = mjolnirOffsets.top - 10 + "px"
+    mjolnir.style.top = mjolnirOffsets.top - 15 + "px"
 
     if (mjolnirOffsets.bottom < 50) {
         metalEffect.play()
@@ -129,7 +130,7 @@ const mjolnirMoveDown = () => {
     mjolnirOffsets = mjolnir.getBoundingClientRect()
 
     mjolnir.style.left = thorOffsets.left + 50 + "px"
-    mjolnir.style.top = mjolnirOffsets.top + 10 + "px"
+    mjolnir.style.top = mjolnirOffsets.top + 15 + "px"
 
     if (mjolnirOffsets.top > thorOffsets.top) {
         cancelAnimationFrame(mjolnirMoveDown)
@@ -140,7 +141,6 @@ const mjolnirMoveDown = () => {
 
     else requestAnimationFrame(mjolnirMoveDown)
 }
-
 
 // ufo Creating 
 const createUfos = () => {
@@ -162,7 +162,7 @@ const createUfos = () => {
 
 // ufo Moving
 const ufosMoveAnime = () => {
-    let ufos = document.querySelectorAll(".ufos")
+    ufos = document.querySelectorAll(".ufos")
     let uTop
 
     ufos.forEach(u => {
@@ -178,7 +178,7 @@ const ufosMoveAnime = () => {
 
 // Detecting Collison
 const CollisonDetector = () => {
-    let ufos = document.querySelectorAll(".ufos")
+    ufos = document.querySelectorAll(".ufos")
 
     ufos.forEach(u => {
         let uOffset = u.getBoundingClientRect();
