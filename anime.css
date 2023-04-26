@@ -1,31 +1,31 @@
 @keyframes thor-anime {
     0% {
         background-image: url('assets/thor1.svg');
-        top: 42%;
+        top: 50%;
     }
 
     50% {
         background-image: url('assets/thor2.svg');
-        top: 42.2%;
+        top: 50.2%;
     }
 
     100% {
         background-image: url('assets/thor1.svg');
-        top: 42%;
+        top: 50%;
     }
 }
 
 @keyframes thor-anime2 {
     0% {
-        top: 42%;
+        top: 50%;
     }
 
     50% {
-        top: 42.2%;
+        top: 50.2%;
     }
 
     100% {
-        top: 42%;
+        top: 50%;
     }
 }
 
