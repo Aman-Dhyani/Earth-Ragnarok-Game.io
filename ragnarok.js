@@ -9,9 +9,12 @@ const lastVideo = document.querySelector(".last-video");
 const earth = document.querySelector(".earth")
 
 // Scores
-const scoreBox = document.querySelector("#score-box")
-const highScoreBox = document.querySelector("#high-score-box")
-let score = 0
+let scoreCount = 0;
+let score = document.querySelector(".scores")
+score.innerHTML = "score:- " + scoreCount
+let HighScore = document.querySelector(".high-scores")
+let savedScores = localStorage.getItem("savedScores")
+let scoresCont = document.querySelector(".scores-cont")
 
 // about ufo
 let speedOfUfo = 1
@@ -21,13 +24,13 @@ let gameAreaOffset
 let thorOffsets
 let thorNewCoords
 let ufoOffsets
-let scoreBoxOffsets
+
+// let scoreBoxOffsets
 let gameAreaContainerOffsets = gameAreaContainer.getBoundingClientRect()
-scoreBox.style.width = gameAreaContainerOffsets.width - 140 + "px"
+scoresCont.style.width = gameAreaContainerOffsets.width + "px"
 
 // let shoot variable
 let letShoot = true
-let uCanTouch = false
 
 // Intervals
 let DetectTheCollison
@@ -41,47 +44,30 @@ const explodeEffect = new Audio('music/explosion.m4a')
 const gameAudio = new Audio('music/thor_ragnarok_theme_song(128k).m4a')
 const gameover = new Audio('music/gameover.m4a')
 
+// obstacles
 let ufos
 
+// onload
 window.onload = () => {
-    /* ======= Events ====== */
-    // For Phones ----- touch
-    window.addEventListener("touchstart", e => {
-        if (uCanTouch === true && e.target === space || e.target === thor) readyToShoot()
-    })
+    /* ---- Events ---- */
+    // For shooting hammer  --- key
+    window.addEventListener("keydown", handleShoot, true);
 
-    // For PC ------ KeyBoard
-    window.addEventListener("keydown", e => {
-        if (e.code == "Space") readyToShoot()
-    })
-
-    // For Moving Thor ----- Input
+    // For Moving Thor  ------- input
     thorNavigator.addEventListener('input', e => {
+        earth.style.transform = `rotate(${parseInt(- e.target.value / 8)}deg)`
         thorNewCoords = parseInt(e.target.value) - 175 + "px"
         thor.style.left = thorNewCoords
-        earth.style.transform = `rotate(${parseInt(- e.target.value / 8)}deg)`
     })
 
-    // For Starting Game ----- Click
+    // For Starting Game ------ click
     window.addEventListener("click", (e) => {
         if (e.target.className.includes('start-game')) startTheGame()
     })
 
-    /* ======= Functions ====== */
-    /* ======= Functions ====== */
-    const startTheGame = () => {
-        uCanTouch = true
-        gameAudio.play()
-        playBtn.classList.add("hide")
-        document.querySelector(".tut").classList.add("hide")
-        scoreBox.innerText = "score" + " " + score
-
-        if (localStorage.getItem("topScores")) highScoreBox.innerText = "highScore" + " " + localStorage.getItem("topScores")
-        else highScoreBox.innerText = "highScore" + " " + score;
-
-        ufosMoveAnime()
-        DetectTheCollison = setInterval(CollisonDetector, 100);
-        createUFOsInterval = setInterval(createUfos, 1200);
+    /* ---- Functions ---- */
+    function handleShoot(e) {
+        if (e.code == "Space") readyToShoot();
     }
 
     // Ready To Shoot
@@ -89,25 +75,33 @@ window.onload = () => {
         if (letShoot === true) shoot()
     }
 
+    // statr game
+    const startTheGame = () => {
+        gameAudio.play()
+        playBtn.classList.add("hide")
+        document.querySelector(".tut").classList.add("hide")
+
+        // ufo move
+        ufosMoveAnime()
+        DetectTheCollison = setInterval(CollisonDetector, 100);
+        createUFOsInterval = setInterval(createUfos, 1200);
+    }
+
     // Shoot
     const shoot = () => {
         letShoot = false
-        thorOffsets = thor.getBoundingClientRect()
 
         mjolnirAudio.play()
         thor.classList.replace("thor-levitating", "thor-shooting")
         mjolnir.classList.remove("hide")
+
+        thorOffsets = thor.getBoundingClientRect()
         mjolnirAnime(thorOffsets);
     }
 
-    // mjolnir/Thor's hammer Animation
+    // mjolnir/Thor's hammer Move --- Up
     const mjolnirAnime = (thorOffsets) => {
         mjolnir.style.top = thorOffsets.top + "px"
-        mjolnirMoveUp()
-    }
-
-    // mjolnir/Thor's hammer Move --- Up
-    const mjolnirMoveUp = () => {
         thorOffsets = thor.getBoundingClientRect()
         mjolnirOffsets = mjolnir.getBoundingClientRect()
 
@@ -117,11 +111,11 @@ window.onload = () => {
         if (mjolnirOffsets.bottom < 50) {
             metalEffect.play()
             mjolnir.classList.add("rotatedMjolnir")
-            cancelAnimationFrame(mjolnirMoveUp)
+            cancelAnimationFrame(mjolnirAnime)
             mjolnirMoveDown()
         }
 
-        else requestAnimationFrame(mjolnirMoveUp)
+        else requestAnimationFrame(mjolnirAnime)
     }
 
     // mjolnir/Thor's hammer Move --- Down
@@ -144,11 +138,10 @@ window.onload = () => {
 
     // ufo Creating 
     const createUfos = () => {
-        scoreBoxOffsets = scoreBox.getBoundingClientRect()
-
+        scoreBoxOffsets = scoresCont.getBoundingClientRect()
         const ufo = document.createElement("div")
         const min = scoreBoxOffsets.left - 10
-        const max = scoreBoxOffsets.right + 50
+        const max = scoreBoxOffsets.right - 85
 
         ufo.id = "ufo"
         ufo.className = "ufos"
@@ -188,24 +181,16 @@ window.onload = () => {
                 mjolnirOffset.x + mjolnirOffset.width > uOffset.x &&
                 mjolnirOffset.y < uOffset.y + uOffset.height &&
                 mjolnirOffset.height + mjolnirOffset.y > uOffset.y && uOffset.top < 550) {
-                score = score + 1
-                scoreBox.innerText = "score" + " " + score
                 shockEffect.currentTime = 0
                 explodeEffect.currentTime = 0
                 shockEffect.play()
                 explodeEffect.play()
                 mjolnir.classList.add("mjolnirAnime")
                 gameAreaContainer.removeChild(u)
-
-                if (localStorage.getItem("topScores")) {
-                    if (score > parseInt(localStorage.getItem("topScores"))) localStorage.setItem("topScores", score)
-                    highScoreBox.innerText = "highScore" + " " + localStorage.getItem("topScores")
-                }
-                else highScoreBox.innerText = "highScore" + " " + score;
+                countingScores();
 
                 // making game hard
-                if (score > 20) speedOfUfo = 5
-
+                if (score > 20) speedOfUfo = 5;
                 setTimeout(() => mjolnir.classList.remove("mjolnirAnime"), 200);
             }
 
@@ -216,7 +201,7 @@ window.onload = () => {
 
             // Game Over
             else if (uOffset.top > 650) {
-                localStorage.setItem("topScores", score)
+                window.removeEventListener("keydown", handleShoot, true);
                 gameAreaContainer.removeChild(u)
                 cancelAnimationFrame(ufosMoveAnime);
                 lastVideo.classList.remove("hide")
@@ -230,4 +215,20 @@ window.onload = () => {
             }
         })
     }
+
+    // count scores for a second
+    function countingScores() {
+        scoreCount = scoreCount += 1
+        score.innerHTML = "score:- " + scoreCount
+
+        if (scoreCount > savedScores) {
+            localStorage.setItem("savedScores", scoreCount)
+            HighScore.innerHTML = "highscore:- " + localStorage.getItem("savedScores")
+        }
+    }
+
+    // SCORES
+    if (localStorage.getItem("savedScores"))
+        HighScore.innerHTML = "highscore:- " + localStorage.getItem("savedScores")
+    else HighScore.innerHTML = "highscore:- " + 0
 }
