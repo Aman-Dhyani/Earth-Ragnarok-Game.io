@@ -52,6 +52,8 @@ window.onload = () => {
     /* ---- Events ---- */
     // For shooting hammer  --- key
     window.addEventListener("keydown", handleShoot, true);
+    document.querySelector(".container").addEventListener("dblclick", handleShoot, true);
+
 
     // For Moving Thor  ------- input
     thorNavigator.addEventListener('input', e => {
