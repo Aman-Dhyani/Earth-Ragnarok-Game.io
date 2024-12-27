@@ -106,7 +106,7 @@ window.onload = () => {
         mjolnirOffsets = mjolnir.getBoundingClientRect()
 
         mjolnir.style.left = thorOffsets.left + 50 + "px"
-        mjolnir.style.top = mjolnirOffsets.top - 15 + "px"
+        mjolnir.style.top = mjolnirOffsets.top - 10 + "px"
 
         if (mjolnirOffsets.bottom < 50) {
             metalEffect.play()
@@ -124,7 +124,7 @@ window.onload = () => {
         mjolnirOffsets = mjolnir.getBoundingClientRect()
 
         mjolnir.style.left = thorOffsets.left + 50 + "px"
-        mjolnir.style.top = mjolnirOffsets.top + 15 + "px"
+        mjolnir.style.top = mjolnirOffsets.top + 9 + "px"
 
         if (mjolnirOffsets.top > thorOffsets.top) {
             cancelAnimationFrame(mjolnirMoveDown)
